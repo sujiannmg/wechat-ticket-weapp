@@ -1,0 +1,102 @@
+<view wx:if='{{detailMovie}}'>
+  <view class='most-expected'>
+    <view class='movie-header'>
+      <view class='movie-background' style='background-image: url({{detailMovie.img}})'></view>
+      <view class='movie-mask'></view>
+      <view class='movie-content'>
+        <view class='movie-poster' style='background-image: url({{detailMovie.img}})'></view>
+        <view class='movie-info'>
+          <view class='movie-name line-ellipsis'>{{detailMovie.nm}}</view>
+          <view class='movie-ename line-ellipsis'>{{detailMovie.enm}}</view>
+          <view wx:if='{{detailMovie.globalReleased}}'>
+            <view wx:if='{{detailMovie.sc}}'>
+              <view class='movie-score line-ellipsis'>
+                <image class='movie-star' wx:for='{{detailMovie.stars}}' wx:key='{{index}}' src='/assets/images/{{item}}.png'></image>
+                {{detailMovie.sc}}
+              </view>
+              <view class='score-num line-ellipsis'>({{detailMovie.snum}}万人评分)</view>
+            </view>
+            <view class='no-score' wx:else>暂无评分</view>
+          </view>
+          <view wx:else class='movie-score'>{{detailMovie.wish}}人想看</view>
+          <view class='movie-category line-ellipsis'>
+            <view>{{detailMovie.cat}}</view>
+            <view class='tag-box' wx:if='{{detailMovie.version}}'>
+              <text class='tag-d'>{{detailMovie.version[0]}}</text>
+              <text wx:if='{{detailMovie.version[1]}}' class='tag-imax'>{{detailMovie.version[1]}}</text>
+            </view>
+          </view>
+          <view class='movie-time line-ellipsis'>{{detailMovie.src}} / {{detailMovie.dur}}分钟</view>
+          <view class='movie-time line-ellipsis'>{{detailMovie.pubDesc}}</view>
+        </view>
+      </view>
+    </view>
+    <!--
+      sumBoxInfo: "", // 累计综合票房/亿
+      boxInfo: "", // 综合票房/万
+      showInfo: "", // 排片场次/百分比
+    -->
+    <view>
+      <view class="box-summary">
+        <view class="box-item">
+          <view class="box-desc">累计综合票房</view>
+          <view class="box-detail">
+            <view class="box-num">{{sumBoxInfo}}</view>
+            <view class="box-unit">亿</view>
+          </view>
+        </view>
+        <view class="box-item-sep"></view>
+        <view class="box-item">
+          <view class="box-desc">综合票房</view>
+          <view class="box-detail">
+            <view class="box-num">{{boxInfo}}</view>
+            <view class="box-unit">万</view>
+          </view>
+        </view>
+        <view class="box-item-sep"></view>
+        <view class="box-item">
+          <view class="box-desc">排片场次</view>
+          <view class="box-detail">
+            <view class="box-num">{{showInfo}}</view>
+            <view class="box-unit">次</view>
+          </view>
+        </view>
+      </view>
+      <view class="box-summary-middle"></view>
+      <!--
+        splitSumBoxInfo: "", // 累计分账票房/亿
+        splitBoxInfo: "", // 分账票房/万
+        avgSeatView: "", // 上座率/百分比
+      -->
+      <view class="box-summary">
+        <view class="box-item">
+          <view class="box-desc">累计分账票房</view>
+          <view class="box-detail">
+            <view class="box-num">{{splitSumBoxInfo}}</view>
+            <view class="box-unit">亿</view>
+          </view>
+        </view>
+        <view class="box-item-sep"></view>
+        <view class="box-item">
+          <view class="box-desc">分账票房</view>
+          <view class="box-detail">
+            <view class="box-num">{{splitBoxInfo}}</view>
+            <view class="box-unit">万</view>
+          </view>
+        </view>
+        <view class="box-item-sep"></view>
+        <view class="box-item">
+          <view class="box-desc">上座率</view>
+          <view class="box-detail">
+            <view class="box-num">{{avgSeatView}}</view>
+            <view class="box-unit">百分比</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='ranking'>想看日增</view>
+  <view class="box">
+    <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
+  </view>
+</view>

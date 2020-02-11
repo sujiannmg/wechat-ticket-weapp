@@ -1,0 +1,55 @@
+<view class='container'>
+  <view class='header'>
+    <view>
+      <!-- 登录组件 --> 
+      <button wx:if="{{!hasUserInfo}}" open-type="getUserInfo" class="avatar-position" bindgetuserinfo="onGetUserInfo">
+          <image slot="img" class="avatar" src="/assets/images/user.png" /> 
+      </button>
+      <!-- 登录后使用open-data -->
+      <view class="avatar-container avatar-position">
+          <image src="{{userInfo.avatarUrl}}" wx:if="{{hasUserInfo}}" class="avatar" />
+          <open-data wx:if="{{hasUserInfo}}" type="userNickName"></open-data>
+      </view>
+    </view>
+    <!-- open-data 用于展示微信开放的数据 -->
+    <!-- 用户头像-->
+    <!-- <open-data type="userAvatarUrl" class='avatar'></open-data> -->
+    <!-- 用户昵称-->
+    <!--  <open-data type="userNickName" class='name'></open-data> -->
+  </view>
+  <view>
+    <view class='order'>
+      <view class='title-box'>
+        <view class='title'>我的订单</view>
+        <view class='title-line'></view>
+      </view>
+      <view class='order-list'>
+        <navigator class='order-item' url='../../subPages/movie-order/movie-order' hover-class='none'>
+          <image src='/assets/images/order_movie.png'></image>
+          <view>电影</view>
+        </navigator>
+        <navigator class='order-item' url='../../subPages/snack-order/snack-order' hover-class='none'>
+          <image src='/assets/images/order_store.png'></image>
+          <view>小吃</view>
+        </navigator>
+      </view>
+    </view>
+    <view class='other'>
+      <view class='share other-item'>
+        <button open-type='share' class='btn' hover-class='none'>
+          <text class='iconfont icon-fenxiang1'></text> 分享给朋友
+        </button>
+      </view>
+      <view class='customer other-item'>
+        <button open-type='contact' class='btn' hover-class='none'>
+          <text class='iconfont icon-lianxikefu'></text> 客服反馈
+        </button>
+      </view>
+      <view class='about other-item'>
+        <navigator url='../../subPages/about-page/about-page' hover-class='none'>
+          <text class='iconfont icon-guanyuwomen'></text> 关于
+        </navigator>
+      </view>
+    </view>
+  </view>
+</view>

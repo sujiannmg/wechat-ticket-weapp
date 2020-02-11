@@ -1,0 +1,42 @@
+<!-- 通用加载页面 -->
+<import src='../../../templates/loadingMore/loadingMore.wxml' /> 
+<view>
+  <view class='most-expected'>
+    <view class='title'>日票房 {{queryDate}}</view>
+    <view  class='box'>
+      <text class='box-item'>今日实时 </text>
+      <text class='box-info'>{{totalBoxInfo}}</text>
+      <text class='box-item'>{{totalBoxUnitInfo}}</text>
+      <view class='box-update-time'>{{updateInfo}}</view>
+    </view>
+  </view>
+  <view class='ranking'>票房排名</view>
+  <view class="table">
+      <view class="tr bg-w">
+        <view class="th">影片</view>
+        <view class="th">综合票房(万)</view>
+        <view class="th ">票房占比</view>
+        <view class="th ">排片占比</view>
+      </view>
+      <block wx:for='{{boxList}}' wx:key='{{item.id}}' data-box='{{item}}' id='item{{index}}'>
+        <navigator url='/pages/subPages/box-office-detail/box-office-detail?movieId={{item.movieId}}'>
+          <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
+              <view class="td">{{item.movieName}}</view>
+              <view class="td">
+                <text class="box-infos">{{item.boxInfo}}</text>
+              </view>
+              <view class="td">{{item.boxRate}}</view>
+              <view class="td">{{item.showRate}}</view>
+            </view>
+            <view class="tr" wx:else>
+              <view class="td">{{item.movieName}}</view>
+              <view class="td">
+                <text class="box-infos">{{item.boxInfo}}</text>
+              </view>
+              <view class="td">{{item.boxRate}}</view>
+              <view class="td">{{item.showRate}}</view>
+            </view>
+        </navigator>
+      </block>
+    </view>
+</view>

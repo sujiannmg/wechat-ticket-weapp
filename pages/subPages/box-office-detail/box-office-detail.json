@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "票房详情",
+  "usingComponents": {
+    "ec-canvas": "/components/ec-canvas/ec-canvas"
+  }
+}
